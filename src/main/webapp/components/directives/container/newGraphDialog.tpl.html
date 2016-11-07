@@ -1,0 +1,39 @@
+<md-dialog aria-label="Node selection">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Novo Grafo</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-padding">
+
+            <p>Selecione o tipo do grafo:</p>
+
+            <md-radio-group ng-model="tipo">
+                <md-radio-button value="digraph">Direcionado</md-radio-button>
+                <md-radio-button value="graph">Não direcionado</md-radio-button>
+            </md-radio-group>
+
+
+
+
+        </md-dialog-content>
+        <div class="md-actions md-padding" layout="row">
+
+            <md-button ng-click="cancelNewGraph()" md-autofocus>
+                Cancelar
+            </md-button>
+
+            <span flex></span>
+
+            <md-button class="md-raised md-primary" ng-click="answerNewGraph(tipo)">
+                Criar Grafo
+            </md-button>
+
+        </div>
+    </form>
+</md-dialog>

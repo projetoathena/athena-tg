@@ -1,0 +1,84 @@
+<md-content layout="row" layout-sm="column" style="height: 100%" gp-container>
+    <md-content flex style="height: 100%;" id="gp-stage-container" layout="column" layout-sm="row">
+        <gp-stage width="width" height="height" graph="graph"></gp-stage>
+    </md-content>
+
+    <md-content id="mdcontent" flex layout="column" layout-sm="row" >
+        <md-tabs class="md-primary md-hue-1" md-align-tabs="top" flex>
+            <md-tab id="tab1">
+                <md-tab-label>Informações gerais</md-tab-label>
+
+                <md-tab-body>
+                    <md-content flex class="md-padding">
+                        <gp-info></gp-info>
+                    </md-content>
+                </md-tab-body>
+
+            </md-tab>
+
+            <md-tab id="tab2" ng-if="graph.getNodes().length > 0">
+                <md-tab-label>Lista de adjacência</md-tab-label>
+                <md-tab-body>
+                    <md-content flex class="md-padding">
+                        <gp-adjascent-list></gp-adjascent-list>
+                    </md-content>
+                </md-tab-body>
+
+            </md-tab>
+
+            <md-tab id="tab3" ng-if="graph.getNodes().length > 0">
+                <md-tab-label>Matriz de adjacência</md-tab-label>
+                <md-tab-body>
+                    <md-content class="md-padding">
+                        <gp-adjacency-matrix></gp-adjacency-matrix>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab id="tab4" ng-if="graph.getNodes().length > 0">
+                <md-tab-label>Algoritmos</md-tab-label>
+                <md-tab-body>
+                    <md-content flex class="md-padding">
+
+                        <md-list>
+
+                            <md-subheader class="md-no-sticky">Algoritmo</md-subheader>
+                            <md-list-item>
+                                <div class="md-list-item-text" flex layout="row">
+                                    <div flex="75" layout="row" layout-align="center center">
+                                        <div flex="90">
+                                            <md-input-container>
+                                                <md-select ng-model="algoritmoSelecionado" >
+                                                    <md-option ng-repeat="algorithm in algorithms" ng-value="algorithm">{{algorithm.name}}</md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+
+                                    <div flex="25" layout="row" layout-align="center center">
+
+                                        <md-button class="md-fab md-icon-button {{emExecucao ? 'md-warn':'md-primary'}}"
+                                                   aria-label="Play" ng-click="runAlg()">
+                                            <md-icon ng-if="!emExecucao">play_arrow</md-icon>
+                                            <md-icon ng-if="emExecucao">pause</md-icon>
+                                        </md-button>
+                                    </div>
+
+                                </div>
+                            </md-list-item>
+                            <md-divider ></md-divider>
+                        </md-list>
+
+                        <gp-algorithm-player>
+                            <gp-step-list></gp-step-list>
+                        </gp-algorithm-player>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</md-content>
+
+
+
+

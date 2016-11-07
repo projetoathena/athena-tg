@@ -1,0 +1,17 @@
+<p ng-repeat="node in graph.getNodes()"
+    ng-class="{'hover-node-list' : hover}" 
+    ng-mouseenter="hover = true;" 
+    ng-mouseleave="hover = false;">
+
+    <span class="node-list" ng-mouseenter="selectNode(node)" ng-mouseleave="deselectNode(node)">
+        {{node.label}}
+    </span>
+
+    <span ng-repeat="nodeDest in adjacencyList[$index]">
+        <md-icon>arrow_forward</md-icon>
+        
+        <span class="node-list" ng-mouseenter="selectNode(nodeDest)" ng-mouseleave="deselectNode(nodeDest)">
+            {{nodeDest.label}}
+        </span>
+    </span>
+</p>

@@ -1,0 +1,126 @@
+<md-list>
+
+    <md-subheader class="md-no-sticky">Orientação do grafo</md-subheader>
+    <md-list-item>
+        <div class="md-list-item-text" layout="column">
+
+            <div ng-if="graph.isDirected()">Grafo direcionado</div>
+            <div ng-if="!graph.isDirected()">Grafo não direcionado</div>
+
+        </div>
+    </md-list-item>
+    <md-divider ></md-divider>
+
+    <md-subheader class="md-no-sticky">Conexidade</md-subheader>
+    <md-list-item>
+        <div class="md-list-item-text" layout="column">
+
+            <p ng-if="graph.getConexidade() === 'c3'">Fortemente conexo</p>
+            <p ng-if="graph.getConexidade() === 'c2'">Semi-fortemente conexo</p>
+            <p ng-if="graph.getConexidade() === 'c1'">Conexo</p>
+            <p ng-if="graph.getConexidade() === 'c0'">Desconexo</p>
+
+
+        </div>
+    </md-list-item>
+    <md-divider ></md-divider>
+
+    <md-subheader class="md-no-sticky">Ordem do grafo (|V|)</md-subheader>
+    <md-list-item>
+        <div class="md-list-item-text" layout="column">
+            <p>{{graph.getNodes().length}}</p>
+        </div>
+    </md-list-item>
+    <md-divider ></md-divider>
+    <md-subheader class="md-no-sticky">Tamanho do grafo (|E|)</md-subheader>
+    <md-list-item>
+        <div class="md-list-item-text" layout="column">
+            <p>{{graph.getEdges().length}}</p>
+        </div>
+    </md-list-item>
+    <md-divider ></md-divider>
+
+    <md-subheader class="md-no-sticky">G = (V,E)</md-subheader>
+    <md-list-item>
+        <div class="md-list-item-text" layout="row">
+            <b>V</b> = {
+            <span ng-repeat="node in graph.getNodes()"
+                  ng-mouseenter="selectNode(node.index)"
+                  ng-mouseleave="deselectNode(node.index)">
+            <span ng-show="!$first">,</span>{{node.label}}</span> }
+
+        </div>
+    </md-list-item>
+
+    <md-list-item>
+
+        <div class="md-list-item-text" layout="row">
+            <p>
+
+            <b>E</b> = {
+        <span ng-repeat="edge in graph.getEdges()" >
+            <span ng-show="!$first">,</span>
+                <span style="white-space: nowrap">{ {{edge.source.label}}, {{edge.target.label}} }</span>
+        </span> }
+
+            </p>
+
+        </div>
+
+
+    </md-list-item>
+    <md-divider ></md-divider>
+</md-list>
+
+
+
+
+
+
+<!--<table>-->
+
+    <!--<tr>-->
+        <!--<td class="md-body-2">G = (V,E)</td>-->
+        <!--<td>-->
+        <!--</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+        <!--<td colspan="2" class="md-body-2">V = {-->
+        <!--<span ng-repeat="node in graph.getNodes()"-->
+              <!--ng-mouseenter="selectNode(node.index)"-->
+              <!--ng-mouseleave="deselectNode(node.index)">-->
+            <!--<span ng-show="!$first">,</span>{{node.label}}</span> }-->
+        <!--</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+        <!--<td colspan="2" class="md-body-2">E = {-->
+        <!--<span ng-repeat="edge in graph.getEdges()">-->
+            <!--<span ng-show="!$first">,</span>-->
+                <!--<span>{ {{edge.source.label}}, {{edge.target.label}} }</span>-->
+        <!--</span> }-->
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+
+
+
+<!--<table>-->
+<!--<tr>-->
+    <!--<th>v</th>-->
+    <!--<th>S(v)</th>-->
+    <!--<th>|S(v)|</th>-->
+    <!--<th>I(w)</th>-->
+    <!--<th>|I(w)|</th>-->
+<!--</tr>-->
+    <!--<tr ng-repeat="node in graph.getNodes()">-->
+        <!--<td>{{node.label}}</td>-->
+        <!--<td>-->
+            <!--<span ng-repeat="adjacent in graph.getAdjacencyList(node.index)">{ {{node.label}} , {{adjacent.label}} }</span>-->
+        <!--</td>-->
+        <!--<td>-->
+            <!--<span>{{graph.getAdjacencyList(node.index).length}}</span>-->
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->

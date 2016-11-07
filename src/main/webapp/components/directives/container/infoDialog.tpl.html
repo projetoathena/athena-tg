@@ -1,0 +1,47 @@
+<md-dialog >
+    <form name="nodeEditForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Informações do vértice</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelNodeInfo()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="margin: 16px; padding:16px; width: 400px;">
+
+            <h4>Sucessores:</h4>
+
+            {
+            <span ng-repeat="vertice in graph.getSucessores(selectedNodeToInfo) track by $index">
+                {{vertice.label}}
+                <i ng-if="!$last">,</i>
+            </span>
+            }
+
+            <h4>Antecessores:</h4>
+
+            {
+            <span ng-repeat="vertice in graph.getAntecessores(selectedNodeToInfo) track by $index">
+                {{vertice.label}}
+                <i ng-if="!$last">,</i>
+            </span>
+            }
+
+
+
+
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+
+            <span flex></span>
+
+            <md-button class="md-raised md-primary" ng-click="answerNodeInfo()" md-autofocus>
+                OK
+            </md-button>
+
+        </div>
+    </form>
+
+</md-dialog>

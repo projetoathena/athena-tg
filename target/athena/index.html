@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="assets/bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="assets/bower_components/roboto-fontface/css/roboto-fontface.css" />
+    <!-- endbower -->
+
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="app/main/main.css">
+    <link rel="stylesheet" href="components/directives/stage/gpstage.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <!-- endbuild -->
+</head>
+<body ng-app="graphe" ng-controller="MainCtrl" layout="row" class="md-body-1">
+
+<!--[if lt IE 7]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<md-content flex layout="column"  class="md-whiteframe-z3"
+    id="maindiv" tabIndex="-1" role="main" style="height: 100%;">
+
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left"
+                md-is-locked-open="{{false}}" md-swipe-left="toggleSidenav('left')">
+
+        <md-toolbar class="md-whiteframe-z1 md-tall" >
+            <span flex></span>
+            <div class="md-toolbar-tools md-toolbar-tools-bottom" style="padding-left: 25px"><h3>{{appName}}</h3></div>
+        </md-toolbar>
+
+        <md-list>
+            <div ng-repeat="option in menuOptions" ng-click="go(option.link, true)">
+            <md-list-item  >
+
+                <b>{{option.label}}</b>
+
+            </md-list-item>
+            <md-divider ></md-divider>
+            </div>
+        </md-list>
+
+    </md-sidenav>
+
+    <!-- Barra de título do programa -->
+    <md-toolbar id="toolbar" ng-hide="isShowContextToolbar">
+        <span class="md-toolbar-tools">
+
+            <md-button ng-click="toggleSidenav('left')"  class="md-icon-button">
+                <md-icon>menu</md-icon>
+            </md-button>
+
+            <h1>{{appName}}</h1>
+
+        </span>
+    </md-toolbar>
+
+    <!-- Barra de título de contexto -->
+    <md-toolbar id="contexttoolbar" ng-show="isShowContextToolbar" >
+        <div class="md-toolbar-tools" style="background-color:{{fab.currentOption.color}};">
+
+            <md-button class="md-icon-button">
+                <md-icon ng-click="cancel()">arrow_back</md-icon>
+            </md-button>
+
+            <md-button ng-repeat="option in fab.currentOption.contextOptions" class="md-icon-button">
+                <md-icon ng-click="fab.currentOption = option">{{option.icon}}</md-icon>
+                <md-tooltip>
+                    {{option.name}}
+                </md-tooltip>
+            </md-button>
+
+            <span flex></span>
+
+            {{fab.currentOption.name}}
+
+            <md-button class="md-icon-button">
+                <md-icon ng-click="showHelp()">help</md-icon>
+            </md-button>
+
+        </div>
+    </md-toolbar>
+
+    <md-toolbar id="messages" ng-show="message != ''" style="min-height: 40px; height: 40px;">
+        <div class="md-toolbar-tools" style="background-color: #710909; height: 40px; min-height: 40px;">
+            <h1>{{message}}</h1>
+        </div>
+    </md-toolbar>
+
+    <div  ng-view id="content" style="height: 100%;"></div>
+
+</md-content>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+
+<script src="assets/bower_components/jquery/dist/jquery.js"></script>
+<script src="assets/bower_components/angular/angular.js"></script>
+<script src="assets/bower_components/angular-animate/angular-animate.js"></script>
+<script src="assets/bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="assets/bower_components/angular-aria/angular-aria.js"></script>
+<script src="assets/bower_components/angular-material/angular-material.js"></script>
+<script src="assets/bower_components/angular-resource/angular-resource.js"></script>
+<script src="assets/bower_components/angular-route/angular-route.js"></script>
+<script src="assets/bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="assets/bower_components/angular-touch/angular-touch.js"></script>
+<script src="assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="assets/bower_components/d3/d3.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="app/app.js"></script>
+<script src="components/core/core.module.js"></script>
+
+<script src="components/services/services.module.js"></script>
+<script src="components/services/contextMessage.js"></script>
+<script src="components/services/toast.js"></script>
+<script src="components/services/broadcastService.js"></script>
+
+<script src="components/algorithms/algorithms.module.js"></script>
+<script src="components/algorithms/dfs.js"></script>
+<script src="components/algorithms/bfs.js"></script>
+<script src="components/algorithms/sequentialColoring.js"></script>
+<script src="components/algorithms/classColoring.js"></script>
+
+<script src="components/fab/fab.module.js"></script>
+<script src="components/fab/fab.js"></script>
+
+<script src="components/model/model.module.js"></script>
+<script src="components/model/labels.js"></script>
+<script src="components/model/colors.js"></script>
+<script src="components/model/model.js"></script>
+
+<script src="components/directives/directives.module.js"></script>
+<script src="components/directives/algorithmPlayer/gpAlgorithmPlayer.js"></script>
+<script src="components/directives/stepList/gpStepList.js"></script>
+<script src="components/directives/container/gpContainer.js"></script>
+<script src="components/directives/stage/gpStage.js"></script>
+<script src="components/directives/info/gpInfo.js"></script>
+<script src="components/directives/adjacencyList/gpAdjacencyList.js"></script>
+<script src="components/directives/adjacencyMatrix/gpAdjacencyMatrix.js"></script>
+<script src="app/main/main.js"></script>
+<script src="app/about/about.js"></script>
+<script src="app/contact/contact.js"></script>
+<script src="components/sidenav/menu.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

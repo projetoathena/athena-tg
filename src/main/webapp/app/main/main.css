@@ -1,0 +1,110 @@
+/*html, body{
+    height: 100%;
+    width: 100%;
+}*/
+
+html, body {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+body {
+    padding: 0;
+    /*overflow: hidden;*/
+}
+
+.header {
+    height: 150px;
+    background-color: #19469D;
+    padding: 15px;
+}
+
+.view {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Roboto', RobotoDraft, 'Helvetica Neue', sans-serif;
+}
+
+.active{
+    background-color: #b3b3b3;
+}
+
+td{
+    width: 100px;
+}
+
+table{
+    width: 100%;
+}
+
+.graphe-fab{
+    position:absolute;
+
+    bottom: 70px;
+    right: 0;
+}
+
+.full-height{
+    height: 100%;
+}
+
+
+.axis line {
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+    /* vector-effect: non-scaling-stroke;*/
+}
+
+.dragging{
+    fill: red !important;
+}
+
+.md-toolbar-tools .ng-hide{
+    transition:1s linear all;
+    opacity:0;
+}
+
+body{
+    font-family: 'Roboto', arial, sans-serif;
+}
+
+.selected circle{
+    stroke: black;
+    stroke-width: 2;
+}
+
+md-tabs {
+display: flex;
+    flex-direction: column;
+}
+
+.passos-algoritmo .passo{
+    white-space: pre;
+}
+
+.passos-algoritmo{
+    font-family: 'Roboto Mono', monospace;
+    padding-bottom: 30px;
+    width: 100%;
+}
+.bold{
+    font-weight: bold;
+}
