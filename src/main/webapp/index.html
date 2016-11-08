@@ -11,6 +11,8 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="assets/bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="assets/bower_components/roboto-fontface/css/roboto-fontface.css" />
+	<link rel="stylesheet" href="angular-csp.css" />
+
     <!-- endbower -->
 
     <!-- endbuild -->
@@ -21,8 +23,10 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
+	<style="[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;">
 </head>
-<body ng-app="graphe" ng-controller="MainCtrl" layout="row" class="md-body-1">
+<body ng-app="graphe" ng-controller="MainCtrl" layout="row" class="md-body-1 ng-cloak">
 
 <!--[if lt IE 7]>
 <p class="browsehappy">
