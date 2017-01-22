@@ -41,6 +41,13 @@
                     message: 'Clique em um vértice para obter informações detalhadas.',
                     enabled: true,
                     color: '#2196F3'
+                },
+                reset: {
+                    name: 'Resetar',
+                    icon: 'clear',
+                    message: 'Clique para limpar o grafo.',
+                    enabled: true,
+                    color: '#9996F3'
                 }
             };
 
