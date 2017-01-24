@@ -10,6 +10,7 @@
                 $scope.menuOptions = [
                     {label: 'Página inicial', link: '/'},
                     {label: 'Novo grafo', link: '/graph'},
+                    {label: 'TESTE', link: '/graph'},
                     {label: 'Sobre', link: '/about'}
                 ];
 
