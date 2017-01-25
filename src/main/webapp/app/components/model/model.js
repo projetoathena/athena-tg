@@ -365,7 +365,7 @@
                 if(typeof v === 'number'){ v = getNode(v); }
                 if(typeof w === 'number'){ w = getNode(w); }
 
-                // se já existir uma aresta associada
+                // se jï¿½ existir uma aresta associada
                 if (getEdge(v, w) !== undefined) { return; }
 
                 if (!directed && getEdge(w, v) !== undefined) { return; }
@@ -409,7 +409,7 @@
             /**
              *
              * @param vertice vertice ou indice do vertice
-             * @returns {Array} lista dos vizinhos do vértice
+             * @returns {Array} lista dos vizinhos do vï¿½rtice
              */
             function getVizinhos(vertice){
 
@@ -445,7 +445,7 @@
                 }
 
                 for(var i = 0; i < vertices.length; i++){
-                    //pega todos da linha que possuam valor != 0, tenham ligação, exceto a si mesmo
+                    //pega todos da linha que possuam valor != 0, tenham ligaï¿½ï¿½o, exceto a si mesmo
                     if(adjMatrix[indice][i] !== 0 && i !== indice ) {
                         sucessores.push(vertices[i]);
                     }
@@ -466,7 +466,7 @@
                 }
 
                 for(var i = 0; i < vertices.length; i++){
-                    //pega todos da linha que possuam valor != 0, tenham ligação, exceto a si mesmo
+                    //pega todos da linha que possuam valor != 0, tenham ligaï¿½ï¿½o, exceto a si mesmo
                     if(adjMatrix[i][indice] !== 0 && i !== indice ) {
                         antecessores.push(vertices[i]);
                     }

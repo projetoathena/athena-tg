@@ -9,7 +9,7 @@
     function gpStageDirective(fab, toast, broadcastService, labels, colors) {
 
         var directive = {
-            templateUrl: 'components/directives/stage/gpStage.tpl.html',
+            templateUrl: 'app/components/directives/stage/gpStage.tpl.html',
             restrict: 'E',
             replace: true,
             scope: {

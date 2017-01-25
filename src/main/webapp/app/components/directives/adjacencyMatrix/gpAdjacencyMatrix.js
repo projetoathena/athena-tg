@@ -133,7 +133,7 @@
         }
 
         return {
-            templateUrl: 'components/directives/adjacencyMatrix/gpAdjacencyMatrix.tpl.html',
+            templateUrl: 'app/components/directives/adjacencyMatrix/gpAdjacencyMatrix.tpl.html',
             restrict: 'E',
             require: ['^gpContainer', '^?gpStage'],
             link: postLink

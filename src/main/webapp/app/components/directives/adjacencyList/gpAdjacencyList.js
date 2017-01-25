@@ -9,7 +9,7 @@
     angular.module('graphe.directives')
         .directive('gpAdjascentList', function () {
             return {
-                templateUrl: 'components/directives/adjacencyList/gpAdjacencyList.tpl.html',
+                templateUrl: 'app/components/directives/adjacencyList/gpAdjacencyList.tpl.html',
                 restrict: 'E',
                 require: '^gpContainer',
                 link: function postLink(scope, element, attrs) {
