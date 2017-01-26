@@ -295,7 +295,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/infoDialog.tpl.html',
+                        templateUrl: '../../.appcomponents/directives/container/infoDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true

@@ -8,7 +8,7 @@
     function gpInfo () {
 
             return {
-                templateUrl: 'components/directives/info/gpInfo.tpl.html',
+                templateUrl: 'app/components/directives/info/gpInfo.tpl.html',
                 restrict: 'E',
                 require: '^gpContainer',
                 link: function postLink(scope, element, attrs) {
