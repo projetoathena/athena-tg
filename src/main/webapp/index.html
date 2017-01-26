@@ -45,19 +45,16 @@
         </md-toolbar>
 
         <md-list>
-            <md-list-item ng-click="go('/', true)">
-                <b>Página inicial</b>
+            <div ng-repeat="option in menuOptions" ng-click="go(option.link, true)">
+            <md-list-item  >
+
+                <b>{{option.label}}</b>
+
             </md-list-item>
             <md-divider ></md-divider>
-            <md-list-item ng-click="go('/graph', true)">
-                <b>Novo grafo</b>
-            </md-list-item>
-            <md-divider ></md-divider>
-            <md-list-item ng-click="go('/about', true)">
-                <b>Sobre</b>
-            </md-list-item>
-            <md-divider ></md-divider>
+            </div>
         </md-list>
+
     </md-sidenav>
 
     <!-- Barra de título do programa -->
