@@ -97,7 +97,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/nodeEditDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/nodeEditDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -146,7 +146,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/selectNodeDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/selectNodeDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -184,7 +184,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/linkEditDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/linkEditDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -256,7 +256,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/newGraphDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/newGraphDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -295,7 +295,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../.appcomponents/directives/container/infoDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/infoDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
