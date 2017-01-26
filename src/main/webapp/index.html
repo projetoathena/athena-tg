@@ -11,7 +11,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="assets/bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="assets/bower_components/roboto-fontface/css/roboto-fontface.css" />
-	<link rel="stylesheet" href="angular-csp.css" />
+    <link rel="stylesheet" href="angular-csp.css" />
 
     <!-- endbower -->
 
@@ -34,7 +34,7 @@
 
 
 <md-content flex layout="column"  class="md-whiteframe-z3"
-    id="maindiv" tabIndex="-1" role="main" style="height: 100%;">
+            id="maindiv" tabIndex="-1" role="main" style="height: 100%;">
 
     <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left"
                 md-is-locked-open="{{false}}" md-swipe-left="toggleSidenav('left')">
@@ -45,16 +45,19 @@
         </md-toolbar>
 
         <md-list>
-            <div ng-repeat="option in menuOptions" ng-click="go(option.link, true)">
-            <md-list-item  >
-
-                <b>{{option.label}}</b>
-
+            <md-list-item ng-click="go('/', true)">
+                <b>Página inicial</b>
             </md-list-item>
             <md-divider ></md-divider>
-            </div>
+            <md-list-item ng-click="go('/graph', true)">
+                <b>Novo grafo</b>
+            </md-list-item>
+            <md-divider ></md-divider>
+            <md-list-item ng-click="go('/about', true)">
+                <b>Sobre</b>
+            </md-list-item>
+            <md-divider ></md-divider>
         </md-list>
-
     </md-sidenav>
 
     <!-- Barra de título do programa -->
