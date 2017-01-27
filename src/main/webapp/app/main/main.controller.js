@@ -1,17 +1,13 @@
 (function () {
     'use strict';
-    angular.module('graphe')
+
+    angular
+        .module('graphe')
         .controller('MainCtrl', [
                       '$scope', '$mdSidenav', '$mdToast', '$mdDialog', '$location', 'fab', 'broadcastService', 'toast', 'model',
             function ( $scope,   $mdSidenav,   $mdToast,   $mdDialog,   $location,   fab,   broadcastService,   toast,   model) {
 
                 $scope.appName = "Athena";
-
-                $scope.menuOptions = [
-                    {label: 'Página inicial', link: '/'},
-                    {label: 'Novo grafo', link: '/graph'},
-                    {label: 'Sobre', link: '/about'}
-                ];
 
                 $scope.isShowContextToolbar = false;
                 $scope.fab = fab;
@@ -97,7 +93,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/nodeEditDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/nodeEditDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -146,7 +142,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/selectNodeDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/selectNodeDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -184,7 +180,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/linkEditDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/linkEditDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -256,7 +252,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../components/directives/container/newGraphDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/newGraphDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true
@@ -295,7 +291,7 @@
                         // use parent scope
                         scope: $scope,
                         preserveScope: true,
-                        templateUrl: '../../.appcomponents/directives/container/infoDialog.tpl.html',
+                        templateUrl: '../../app/components/directives/container/infoDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
                         clickOutsideToClose: true

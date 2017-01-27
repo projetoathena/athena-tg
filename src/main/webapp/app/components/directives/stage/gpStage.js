@@ -24,9 +24,11 @@
         };
 
 
+
         function postLink(scope, element, attrs, gpContainerCtrl) {
 
             scope.fab = fab;
+            scope.resetGraph = resetGraph;
             scope.setSelectedOption = gpContainerCtrl.setSelectedOption;
             //scope.showNodeEditDialog = gpContainerCtrl.showNodeEditDialog;
 
@@ -97,7 +99,6 @@
             //d3.select(window).on('keydown', keydown);
 
             redraw();
-
 
             /**
              * Função que redesenha o grafo na tela, só deve ser chamada quando a tela é redimensionada ou quando
@@ -228,7 +229,28 @@
                 });
 
                 force.start();
+            }
 
+            function resetGraph() {
+                if(scope.graph.nodes != undefined) {
+                    if (scope.graph.links.length > 0) {
+                        for (var i = 0; i < scope.graph.links.length;) {
+                            scope.graph.removeEdge(scope.graph.links[i].source, scope.graph.links[i].target)
+                            redraw();
+                            if (scope.graph.links.length < 0)
+                                i++
+                        }
+                    }
+                    if (scope.graph.nodes.length > 0) {
+                        for (var i = 0; i < scope.graph.nodes.length;) {
+                            scope.graph.removeNode(scope.graph.nodes[i])
+                            redraw();
+                            if (scope.graph.nodes.length < 0)
+                                i++
+                        }
+                    }
+                }
+                toast.showSimpleToast('Resetado com sucesso!');
             }
 
             function updateSelections(){

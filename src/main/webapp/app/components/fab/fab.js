@@ -29,7 +29,7 @@
                 },
                 remove: {
                     name: 'Excluir',
-                    icon: 'clear',
+                    icon: 'remove',
                     message: 'Clique em um vértice ou aresta para excluí-lo.',
                     enabled: true,
                     color: '#F44336'
