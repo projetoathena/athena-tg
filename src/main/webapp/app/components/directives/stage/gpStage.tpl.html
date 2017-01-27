@@ -3,26 +3,55 @@
     <link href="gpstage.css" type="text/css">
 
     <div class="graphe-fab">
-        <md-fab-speed-dial md-open='isOpen' md-direction="up" ng-class="'md-scale'">
+<!--menu drop "up" no canto direito do grid-->
+        <md-fab-speed-dial md-open='isOpen' md-direction="left" ng-class="'md-fling'">
             <md-fab-trigger>
                 <md-button aria-label="menu" class="md-fab md-warn">
                     <md-icon>menu</md-icon>
                 </md-button>
             </md-fab-trigger>
-
             <md-fab-actions>
-                <div ng-repeat="option in fab.fabOptions">
-                    <md-button class="md-fab md-mini"
-                               ng-click="setSelectedOption(option)"
-                               style="background-color: {{option.color}}">
-                        <md-tooltip>
-                            {{option.name}}
-                        </md-tooltip>
-                        <md-icon>{{option.icon}}</md-icon>
-                    </md-button>
-                </div>
+<!--botão adicionar nó/aresta-->
+                <md-button aria-labal="add"
+                           ng-click="setSelectedOption(fab.fabOptions.add)"
+                           class="md-fab md-mini"
+                           style="background-color: #4CAF50">
+                    <md-tooltip>
+                        Adicionar
+                    </md-tooltip>
+                    <md-icon>add</md-icon>
+                </md-button>
+<!--botão excluir nó/aresta-->
+                <md-button aria-label="remove"
+                           ng-click="setSelectedOption(fab.fabOptions.remove)"
+                           class="md-fab md-mini"
+                           style="background-color: #F44336">
+                    <md-tooltip>
+                        Excluir
+                    </md-tooltip>
+                    <md-icon>remove</md-icon>
+                </md-button>
+<!--botão resetar grafo, sem alterar tipo-->
+                <md-button aria-label="clear"
+                           ng-click="resetGraph()"
+                           class="md-fab md-mini"
+                           style="background-color: #555">
+                    <md-tooltip>
+                        Resetar
+                    </md-tooltip>
+                    <md-icon>clear</md-icon>
+                </md-button>
+<!--botão informações nó/aresta-->
+                <md-button aria-label="info"
+                           ng-click="setSelectedOption(fab.fabOptions.info)"
+                           class="md-fab md-mini"
+                           style="background-color: #2196F3">
+                    <md-tooltip>
+                        Informações
+                    </md-tooltip>
+                    <md-icon>info</md-icon>
+                </md-button>
             </md-fab-actions>
-
         </md-fab-speed-dial>
     </div>
 </div>
