@@ -1,17 +1,13 @@
 (function () {
     'use strict';
-    angular.module('graphe')
+
+    angular
+        .module('graphe')
         .controller('MainCtrl', [
                       '$scope', '$mdSidenav', '$mdToast', '$mdDialog', '$location', 'fab', 'broadcastService', 'toast', 'model',
             function ( $scope,   $mdSidenav,   $mdToast,   $mdDialog,   $location,   fab,   broadcastService,   toast,   model) {
 
                 $scope.appName = "Athena";
-
-                $scope.menuOptions = [
-                    {label: 'Página inicial', link: '/'},
-                    {label: 'Novo grafo', link: '/graph'},
-                    {label: 'Sobre', link: '/about'}
-                ];
 
                 $scope.isShowContextToolbar = false;
                 $scope.fab = fab;

@@ -11,18 +11,43 @@
             </md-fab-trigger>
 
             <md-fab-actions>
-                <div ng-repeat="option in fab.fabOptions">
-                    <md-button class="md-fab md-mini"
-                               ng-click="setSelectedOption(option)"
-                               style="background-color: {{option.color}}">
+                <!--botão adicionar nó/aresta-->
+                    <md-button ng-click="setSelectedOption(fab.fabOptions.add)"
+                               class="md-fab md-mini"
+                               style="background-color: #4CAF50">
                         <md-tooltip>
-                            {{option.name}}
+                            Adicionar
                         </md-tooltip>
-                        <md-icon>{{option.icon}}</md-icon>
+                        <md-icon>add</md-icon>
                     </md-button>
-                </div>
+                <!--botão excluir nó/aresta-->
+                    <md-button ng-click="setSelectedOption(fab.fabOptions.remove)"
+                               class="md-fab md-mini"
+                               style="background-color: #F44336">
+                        <md-tooltip>
+                            Excluir
+                        </md-tooltip>
+                        <md-icon>remove</md-icon>
+                    </md-button>
+                <!--botão informações nó/aresta-->
+                    <md-button ng-click="setSelectedOption(fab.fabOptions.info)"
+                               class="md-fab md-mini"
+                               style="background-color: #2196F3">
+                        <md-tooltip>
+                            Informações
+                        </md-tooltip>
+                        <md-icon>info</md-icon>
+                    </md-button>
+                <!--botão resetar grafo, sem alterar tipo-->
+                    <md-button ng-click="resetGraph()"
+                               class="md-fab md-mini"
+                               style="background-color: #555">
+                        <md-tooltip>
+                            Resetar
+                        </md-tooltip>
+                        <md-icon>clear</md-icon>
+                    </md-button>
             </md-fab-actions>
-
         </md-fab-speed-dial>
     </div>
 </div>
