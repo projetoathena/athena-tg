@@ -59,6 +59,7 @@
         }
 
         function setSelectedOption(option) {
+            $scope.cancel();
             $scope.fab.currentOption = option;
             $scope.showFab = false;
             $scope.showContextToolbar();
