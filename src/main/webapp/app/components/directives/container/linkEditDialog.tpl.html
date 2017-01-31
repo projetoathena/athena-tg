@@ -4,7 +4,7 @@
             <div class="md-toolbar-tools">
                 <h2>Edição de aresta</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
+                <md-button class="md-icon-button" ng-click="cancelLinkEdit()">
                     <md-icon>close</md-icon>
                 </md-button>
             </div>
@@ -17,10 +17,18 @@
 
             <div layout>
 
-                <md-slider flex min="1" max="100" ng-model="selectedLink.peso" id="radius-slider"></md-slider>
+                <md-slider flex
+                           min="1"
+                           max="100"
+                           ng-model="selectedLink.peso"
+                           id="radius-slider"></md-slider>
 
-                <div flex="20" layout layout-align="center center">
-                    <input flex type="number" ng-model="selectedLink.peso">
+                <div layout
+                     flex="20"
+                     layout-align="center center">
+                    <input flex
+                           type="number"
+                           ng-model="selectedLink.peso">
                 </div>
             </div>
 
@@ -29,7 +37,8 @@
 
                 <div layout layout-align="center center">
                 {{selectedLink.source.label}}
-                <md-button class="md-raised" ng-click="invertLink()">
+                <md-button class="md-raised"
+                           ng-click="invertLink()">
                     <md-icon>arrow_forward</md-icon>
                 </md-button>
 
@@ -41,15 +50,19 @@
 
 
         </md-dialog-content>
-        <div class="md-actions" layout="row">
+        <div class="md-actions"
+             layout="row">
 
-            <md-button class="md-raised" md-autofocus ng-click="cancelLinkEdit()">
+            <md-button md-autofocus
+                       class="md-raised"
+                       ng-click="cancelLinkEdit()">
                 Cancelar
             </md-button>
 
             <span flex></span>
 
-            <md-button class="md-raised md-primary" ng-click="answerLinkEdit()">
+            <md-button class="md-raised md-primary"
+                       ng-click="answerLinkEdit()">
                 Edição concluída
             </md-button>
 
