@@ -9,6 +9,10 @@
 
                 $scope.appName = "Athena";
 
+                $scope.rotuloObr = true;
+
+                $scope.contador = 0;
+
                 $scope.isShowContextToolbar = false;
                 $scope.fab = fab;
                 $scope.showFab = true;
@@ -96,7 +100,7 @@
                         templateUrl: '../../app/components/directives/container/nodeEditDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
-                        clickOutsideToClose: true
+                        clickOutsideToClose: false
                     }).then(
                         // on sucess
                         function () {
@@ -111,20 +115,34 @@
                 //TODO: atualizar apenas quando der ok?
                 function NodeEditDialogController($scope, $mdDialog) {
 
-                    $scope.color = $scope.selectedNodeToEdit.color || d3.rgb(255,255,255);
+                    $scope.cancelarNodeEdit = cancelarNodeEdit;
+                    $scope.answerNodeEdit = answerNodeEdit;
+
+                    $scope.radius = $scope.selectedNodeToEdit.radius;
+                    $scope.color = $scope.selectedNodeToEdit.color || d3.rgb(255, 255, 255);
                     $scope.label = $scope.selectedNodeToEdit.label || 'Rótulo';
+                    $scope.r = $scope.selectedNodeToEdit.color.r;
+                    $scope.g = $scope.selectedNodeToEdit.color.g;
+                    $scope.b = $scope.selectedNodeToEdit.color.b;
 
-                    $scope.$watch($scope.selectedNodeToEdit, function(){
-                        broadcastService.broadcast('update_stage');
-                    }, true);
 
-                    $scope.cancelarNodeEdit = function () {
-                        $mdDialog.cancel();
+                    function cancelarNodeEdit() {
+                        if($scope.selectedNodeToEdit.label != undefined){
+                            $scope.selectedNodeToEdit.color.b = $scope.b;
+                            $scope.selectedNodeToEdit.color.g = $scope.g;
+                            $scope.selectedNodeToEdit.color.r = $scope.r;
+                            $scope.selectedNodeToEdit.label = $scope.label;
+                            $scope.selectedNodeToEdit.radius = $scope.radius;
+                            $mdDialog.cancel();
+                        }
                     };
 
-                    $scope.answerNodeEdit = function (answer) {
-                        //console.log('node edit complete');
-                        $mdDialog.hide(answer);
+                    function answerNodeEdit(valido) {
+                        if(valido){
+                            $mdDialog.hide(valido);
+                        }else{
+                            toast.showSimpleToast("Verifique o formulário, há erros !");
+                        }
                     };
                 }
 
@@ -162,9 +180,13 @@
 
                     $scope.hide = function () { $mdDialog.hide(); };
 
-                    $scope.cancelDialog = function () { $mdDialog.cancel(); };
+                    $scope.cancelDialog = function () {
+                        $mdDialog.cancel();
+                    };
 
-                    $scope.answerDialog = function (answer) { $mdDialog.hide(answer);};
+                    $scope.answerDialog = function (answer) {
+                        $mdDialog.hide(answer);
+                    };
                 }
 
 
@@ -183,7 +205,7 @@
                         templateUrl: '../../app/components/directives/container/linkEditDialog.tpl.html',
                         parent: angular.element(document.body),
                         targetEvent: null,
-                        clickOutsideToClose: true
+                        clickOutsideToClose: false
                     }).then(
                         // on sucess
                         function () { action(); },
@@ -194,7 +216,13 @@
 
                 function LinkEditDialogController($scope, $mdDialog) {
 
+                    $scope.cancelLinkEdit = cancelLinkEdit;
+                    $scope.invertLink = invertLink;
+
                     $scope.selectedLink.peso = $scope.selectedLink.peso || 1;
+                    $scope.peso = $scope.selectedLink.peso;
+                    $scope.source = $scope.selectedLink.source;
+                    $scope.target = $scope.selectedLink.target;
 
                     $scope.linkDirecaoContraria = undefined;
 
@@ -213,7 +241,7 @@
                         broadcastService.broadcast('update_matrix');
                     }, true);
 
-                    $scope.invertLink = function(){
+                    function invertLink(){
 
                         var source = $scope.selectedLink.source;
                         var target = $scope.selectedLink.target;
@@ -231,10 +259,15 @@
 
                         broadcastService.broadcast('update_stage');
                         broadcastService.broadcast('update_matrix');
+                        $scope.contador++;
                     };
 
-                    $scope.cancelLinkEdit = function () {
-                        $mdDialog.cancel();
+                    function cancelLinkEdit() {
+                        $scope.selectedLink.peso = $scope.peso;
+                        if($scope.contador % 2 == 1){
+                            invertLink();
+                        }
+                            $mdDialog.cancel();
                     };
 
                     $scope.answerLinkEdit = function (answer) {
