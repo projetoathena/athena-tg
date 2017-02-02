@@ -250,6 +250,7 @@
                         }
                     }
                 }
+                labels.restart();
                 toast.showSimpleToast('Resetado com sucesso!');
             }
 
@@ -575,6 +576,7 @@
                         return d.target.y;
                     });
 
+//mostra o peso do link na tela, acima da aresta - henrique
                 allLinksGroup.select('text')
                     .attr("x", function (d) {
                         if (d.target.x > d.source.x) {
