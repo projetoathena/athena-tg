@@ -50,8 +50,8 @@
                 .append('svg:svg')
                 .attr('width', scope.stageWidth)
                 .attr('height', scope.stageHeight)
-                .attr('pointer-events', 'all')
-                .call(d3.behavior.zoom().on('zoom', rescale));
+                .attr('pointer-events', 'all');
+                // .call(d3.behavior.zoom().on('zoom', rescale));
 
             outer.append('defs').append('marker')
                 .attr('id', 'arrow')
@@ -638,12 +638,12 @@
                 });
             }
 
-            function rescale() {
-                var trans = d3.event.translate;
-                var scale = d3.event.scale;
-                vis.attr('transform', 'translate(' + trans + ')' + ' scale(' + scale + ')');
-                //TODO: update grid size
-            }
+            // function rescale() {
+            //     var trans = d3.event.translate;
+            //     var scale = d3.event.scale;
+            //     vis.attr('transform', 'translate(' + trans + ')' + ' scale(' + scale + ')');
+            //     //TODO: update grid size
+            // }
 
             function updateStage(){
                 force.resume();
