@@ -263,10 +263,10 @@
                         var sourceIndex = vertices.indexOf(link.source);
                         var targetIndex = vertices.indexOf(link.target);
 
-                        adjMatrix[sourceIndex][targetIndex] = link.pesoMatriz;
+                        adjMatrix[sourceIndex][targetIndex] = link.peso;
 
                         if (!directed) {
-                            adjMatrix[targetIndex][sourceIndex] = link.pesoMatriz;
+                            adjMatrix[targetIndex][sourceIndex] = link.peso;
                         }
                     });
                 }
@@ -377,7 +377,6 @@
                     target: w,
                     id: id++,
                     peso: 1,
-                    pesoMatriz: 1
                 });
 
                 //console.log(v.label + '>' + w.label);
