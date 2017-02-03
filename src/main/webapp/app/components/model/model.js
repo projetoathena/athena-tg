@@ -243,7 +243,7 @@
                     return vertice;
                 }
             }
-
+//seta as ligações na matriz de adjacencia e usa o peso como número para união de vértices - henrique
             function updateAdjacencyMatrix() {
 
                 adjMatrix = [];
@@ -376,7 +376,7 @@
                     source: v,
                     target: w,
                     id: id++,
-                    peso: 1
+                    peso: 1,
                 });
 
                 //console.log(v.label + '>' + w.label);
@@ -399,8 +399,6 @@
             function getEdges() {
                 return links;
             }
-
-
 
             function getNodes() {
                 return vertices;

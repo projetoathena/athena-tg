@@ -232,6 +232,7 @@
             }
 
             function resetGraph() {
+
                 if(scope.graph.nodes != undefined) {
                     if (scope.graph.links.length > 0) {
                         for (var i = 0; i < scope.graph.links.length;) {
@@ -250,6 +251,7 @@
                         }
                     }
                 }
+                labels.restart();
                 toast.showSimpleToast('Resetado com sucesso!');
             }
 
@@ -409,14 +411,14 @@
                         else if (scope.firstNode !== d) {
 
                             scope.$apply(function () {
-
-                                scope.graph.addEdge(scope.firstNode, d);
+                                 scope.graph.addEdge(scope.firstNode, d);
                                 scope.firstNode = undefined;
 
                                 //limpa as mensagens do contexto
                                 broadcastService.broadcast('new_message', 'Selecione nó origem.');
 
                             });
+
                         }
                         break;
                 }
@@ -436,6 +438,7 @@
 
                 // inicia o force layout para a atualização da posição dos elementos do grafo
                 force.start();
+                return console.log('true;');
             }
 
             /**
@@ -490,30 +493,39 @@
              * Função chamada ao se clicar no palco.
              */
             function clickedOnStage() {
+                try {
+                    // se for adicionar vértice
+                    if (fab.currentOption === fab.fabOptions.add.contextOptions[0]) {
 
-                // se for adicionar vértice
-                if (fab.currentOption === fab.fabOptions.add.contextOptions[0]) {
+                        var coordinates = d3.mouse(this);
+                        scope.graph.getNodes().forEach(function (node) {
+                            if (((coordinates[0] > (node.x - node.radius)) && (coordinates[0] < (node.x + node.radius))) &&
+                                ((coordinates[1] > (node.y - node.radius)) && (coordinates[1] < (node.y + node.radius)))) {
+                                toast.showSimpleToast('Você clicou em cima de um nó já existente, adicione em outro lugar!')
+                                throw console.log('nó existente!');
+                            }
+                        })
 
-                    var coordinates = d3.mouse(d3.event.target);
 
-
-                    scope.$apply(function(){
-                        scope.graph.addNode({
-                            x: coordinates[0],
-                            y: coordinates[1],
-                            fixed: true,
-                            radius: 15,
-                            color: d3.rgb(255, 255, 255),
-                            label: labels.getLetter()
-
-                        });
+                scope.$apply(function(){
+                    scope.graph.addNode({
+                        x: coordinates[0],
+                        y: coordinates[1],
+                        fixed: true,
+                        radius: 15,
+                        color: d3.rgb(255, 255, 255),
+                        label: labels.getLetter()
                     });
+                });
+                gpContainerCtrl.updateNodeCount();
 
-
-                    gpContainerCtrl.updateNodeCount();
-
-                    toast.showSimpleToast('Vértice adicionado!');
+                toast.showSimpleToast('Vértice adicionado!');
+                    }
                 }
+                catch(e){
+                    console.log(e)
+                };
+
             }
 
             /**
@@ -571,10 +583,9 @@
                     .attr('x1', function (d) { return d.source.x; })
                     .attr('y1', function (d) { return d.source.y; })
                     .attr('x2', function (d) {return d.target.x;})
-                    .attr('y2', function (d) {
-                        return d.target.y;
-                    });
+                    .attr('y2', function (d) {return d.target.y;});
 
+//mostra o peso do link na tela, acima da aresta - henrique
                 allLinksGroup.select('text')
                     .attr("x", function (d) {
                         if (d.target.x > d.source.x) {
@@ -593,7 +604,9 @@
                         }
                     })
                     .text(function(d) {
-                        return d.peso;
+                        if(d.peso > 1) {
+                            return d.peso;
+                        }
                     });
 
                 allNodesGroup.select('.node circle')
@@ -681,6 +694,7 @@
                         break;
                     case fab.fabOptions.add.contextOptions[1]:
                         broadcastService.broadcast('new_message', 'Selecione nó origem.');
+                        scope.firstNode = undefined;
                         break;
                 }
                 //console.log('currentOption: ');

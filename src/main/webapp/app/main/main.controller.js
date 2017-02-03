@@ -90,6 +90,9 @@
 
                 function showNodeEditDialog(node, action) {
 
+                    if($scope.fab.currentOption != {}){
+                        $scope.cancel();
+                    }
                     $scope.selectedNodeToEdit = node;
 
                     $mdDialog.show({
@@ -194,6 +197,10 @@
                  *  Diálogo de edição de arestas
                  */
                 function showLinkEditDialog(link, action) {
+
+                    if($scope.fab.currentOption != {}){
+                        $scope.cancel();
+                    }
 
                     $scope.selectedLink = link;
 
