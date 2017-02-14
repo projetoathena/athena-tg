@@ -9,9 +9,23 @@
     angular.module('graphe.algorithms')
         .service('cmDijkstra', function () {
 
-            //var n
+            var n = 'Caminhos mínimos de Dijkstra',
+                instructions = [],
+                resultado = [],
+                steps = [
+                    "step1",
+                    "step2",
+                    "...",
+                    "ultimo step"
+                ];
 
-            //function run
+            function run(graph) {
+                console.log('iniciando caminhos mínimos Dijkstra');
+                coloracaoClasse(graph);
+                console.log('fim: caminhos mínimos Dijkstra');
+                return resultado;
+            }
+
 
             //function cmDijkstra
             //1. cria min heap size = numero de vertices
@@ -21,6 +35,16 @@
             //  b. checa adjacentes do X ainda contidos na pilha (chamados V)
             //     se distancia de V for > que distancia de X + (X até V), update distancia
 
-            //var service
 
+            var service = {
+                name: n,
+                steps: steps,
+                result: resultado,
+                instructions: instructions,
+                run: run,
+                usaCores: true,
+                usaFila: true
+            };
+
+            return service;
         }
