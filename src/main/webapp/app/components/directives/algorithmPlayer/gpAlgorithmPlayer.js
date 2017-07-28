@@ -8,7 +8,7 @@
      */
 
     angular.module('graphe.directives')
-        .directive('gpAlgorithmPlayer', ['dfs','bfs','coloracaoSequencial', 'coloracaoClasse',gpAlgorithmPlayer])
+        .directive('gpAlgorithmPlayer', ['dfs','bfs','coloracaoSequencial', 'coloracaoClasse','caminhoMinimo', 'menorArvore', gpAlgorithmPlayer])
         .controller('gpAlgorithmPlayerCtrl', gpAlgorithmPlayerCtrl);
 
     function gpAlgorithmPlayer() {
@@ -19,7 +19,7 @@
         };
     }
 
-    function gpAlgorithmPlayerCtrl($scope, $interval, dfs,bfs, coloracaoSequencial, coloracaoClasse, broadcastService) {
+    function gpAlgorithmPlayerCtrl($scope, $interval, dfs,bfs, coloracaoSequencial, coloracaoClasse,caminhoMinimo, menorArvore, broadcastService) {
 
         var timerAlgoritmo;
 
@@ -41,7 +41,9 @@
             dfs,
             bfs,
             coloracaoSequencial,
-            coloracaoClasse
+            coloracaoClasse,
+            caminhoMinimo,
+            menorArvore
         ];
 
         $scope.pilha = [];
@@ -140,12 +142,17 @@
 
                 else{
                     counter = 0;
-                    if($scope.algoritmoSelecionado.usaCores){
+                    if($scope.algoritmoSelecionado.usaCores || $scope.algoritmoSelecionado.usaNada){
                         broadcastService.broadcast('clean_all_nodes');
                         resultado = $scope.algoritmoSelecionado.run($scope.graph);
                         $scope.startTimer();
-                    }
-                    else{
+                    }else if ($scope.algoritmoSelecionado.usaLista) {
+                      $scope.showEndDialog(function (IniFim) {
+                          broadcastService.broadcast('clean_all_nodes');
+                          resultado = $scope.algoritmoSelecionado.run($scope.graph,IniFim);
+                          $scope.startTimer();
+                      });
+                    }else{
                         $scope.showDialog(function (startNode) {
                             broadcastService.broadcast('clean_all_nodes');
                             resultado = $scope.algoritmoSelecionado.run($scope.graph, startNode);
