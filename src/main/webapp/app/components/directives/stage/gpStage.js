@@ -43,11 +43,7 @@
                 vis,
                 allLinksGroup,
                 allNodesGroup,
-                force,
-                coordenadaXStart,
-                coordenadaYStart,
-                coordenadaXEnd,
-                coordenadaYEnd;
+                force;
 
             // init svg
             outer = d3.select(element[0])
@@ -389,9 +385,6 @@
                     case fab.fabOptions.add.contextOptions[1]:
 
                         //console.log('add link');
-                        if(coordenadaXStart != coordenadaXEnd || coordenadaYStart != coordenadaYEnd){
-                            return;
-                        }
 
                         if (scope.firstNode === undefined) {
                             scope.$apply(function () {
@@ -440,8 +433,6 @@
              */
             function dragStart(d, i) {
                 // silence other listeners
-                coordenadaXStart = d.x;
-                coordenadaYStart = d.y;
                 d3.event.sourceEvent.stopPropagation();
                 //console.log('dragStart');
 
@@ -456,9 +447,6 @@
              * @param i
              */
             function dragEnd(d, i) {
-
-                coordenadaXEnd = d.x;
-                coordenadaYEnd = d.y;
                 scope.$apply();
                 //console.log('dragEnd');
 
