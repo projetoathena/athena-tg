@@ -28,6 +28,7 @@
                 $scope.message = '';
 
                 $scope.showDialog = showDialog;
+                $scope.showEndDialog = showEndDialog;
                 $scope.showNodeEditDialog = showNodeEditDialog;
                 $scope.showLinkEditDialog = showLinkEditDialog;
                 $scope.showNewGraphDialog = showNewGraphDialog;
@@ -172,6 +173,35 @@
                         // on sucess
                         function () {
                             action($scope.selectedNodeToRun);
+                        },
+                        // on error
+                        function () {
+                            $scope.status = 'Execução de algoritmo cancelada.';
+                        });
+                }
+
+                function showEndDialog(action) {
+
+                    $scope.selectedNodeToRun = null;
+                    $scope.selectedNodeToEnd = null;
+
+                    $mdDialog.show({
+                        controller: DialogController,
+                        // use parent scope
+                        scope: $scope,
+                        preserveScope: true,
+                        templateUrl: '../../app/components/directives/container/selectNodesDialog.tpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: null,
+                        clickOutsideToClose: true
+                    })
+                        .then(
+                        // on sucess
+                        function () {
+                          var IniFim = [];
+                          IniFim[0] = $scope.selectedNodeToRun;
+                          IniFim[1] = $scope.selectedNodeToEnd;
+                            action(IniFim);
                         },
                         // on error
                         function () {
