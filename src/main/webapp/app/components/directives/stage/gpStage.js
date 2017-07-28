@@ -679,11 +679,19 @@
 
             scope.$on('select_link', selectLink);
 
+            scope.$on('select_link_nd', selectLinkND);
+
+            scope.$on('visit_link_nd', visitLinkND);
+
             scope.$on('deselect_node', deselectNode);
 
             scope.$on('update_stage', updateStage);
 
             scope.$on('clean_all_nodes', cleanAllNodes);
+
+            scope.$on('tDesconexo', tDesconexo);
+
+            scope.$on('tDirecionado', tDirecionado);
 
             scope.$watch('graph', redraw, true);
 
@@ -718,6 +726,14 @@
              */
             function initSVG(){
 
+            }
+
+            function tDirecionado(){
+              toast.showSimpleToast('Impossível executar algoritmo, Grafo direcionado');
+            }
+
+            function tDesconexo(){
+              toast.showSimpleToast('Impossível executar algoritmo, Grafo desconexo');
             }
 
             function deselectLink(source, target) {
@@ -849,6 +865,120 @@
                 }
             }
 
+            function selectLinkND() {
+
+                var source = broadcastService.object.source;
+                var target = broadcastService.object.target;
+
+
+                // Select the link based on source and target objects
+                var selectedLink = d3.selectAll('.link').filter(function (d, i) {
+                    return d.source === source && d.target === target;
+                }).data()[0];
+
+                if (selectedLink === undefined) {
+                    //console.log('link doesnt exists! ' + source.label + ' ' + target.label);
+                    return;
+                }
+
+                var points = [
+                    // start
+                    [selectedLink.source.x, selectedLink.source.y],
+                    // end
+                    [selectedLink.target.x, selectedLink.target.y]
+                ];
+
+                var line = d3.svg.line()
+                    .x(function (d) { return d[0]; })
+                    .y(function (d) { return d[1]; })
+                    .interpolate('basis');
+
+                var linkgroup = d3.select("svg #link-group");
+
+                var path = linkgroup.append("path")
+                    .attr("d", line(points))
+                    .style("stroke", "red");
+
+                var totalLength = path.node().getTotalLength();
+                var animationTime = 3500;
+                var currentPath = path.node();
+
+                transition();
+
+                // Faz a interpolação da linha que realçará a linha atual selecionada.
+                function transition() {
+                    path
+                        .transition()
+                        .duration(animationTime)
+                        .attrTween('stroke-dasharray', tweenDash)
+                        .style("stroke", "red")
+                }
+
+                function tweenDash() {
+                    return function (t) {
+                        var length = totalLength * t;
+                        return length + ',' + totalLength;
+                    };
+                }
+            }
+
+            function visitLinkND() {
+
+                var source = broadcastService.object.source;
+                var target = broadcastService.object.target;
+
+
+                // Select the link based on source and target objects
+                var selectedLink = d3.selectAll('.link').filter(function (d, i) {
+                    return d.source === source && d.target === target;
+                }).data()[0];
+
+                if (selectedLink === undefined) {
+                    //console.log('link doesnt exists! ' + source.label + ' ' + target.label);
+                    return;
+                }
+
+                var points = [
+                    // start
+                    [selectedLink.source.x, selectedLink.source.y],
+                    // end
+                    [selectedLink.target.x, selectedLink.target.y]
+                ];
+
+                var line = d3.svg.line()
+                    .x(function (d) { return d[0]; })
+                    .y(function (d) { return d[1]; })
+                    .interpolate('basis');
+
+                var linkgroup = d3.select("svg #link-group");
+
+                var path = linkgroup.append("path")
+                    .attr("d", line(points))
+                    .style("stroke", "blue");
+
+                var totalLength = path.node().getTotalLength();
+                var animationTime = 2500;
+                var currentPath = path.node();
+
+                transition();
+
+                // Faz a interpolação da linha que realçará a linha atual selecionada.
+                function transition() {
+                    path
+                        .transition()
+                        .duration(animationTime)
+                        .attrTween('stroke-dasharray', tweenDash)
+                        .style("stroke", "blue")
+                }
+
+                function tweenDash() {
+                    return function (t) {
+                        var length = totalLength * t;
+                        return length + ',' + totalLength;
+                    };
+                }
+            }
+
             /**
              * Função de seleção de nó.
              * @param node
@@ -935,7 +1065,8 @@
                 d3.selectAll('.node')
                     .select('circle')
                     .transition()
-                    .duration(250)
+                    .duration(500)
+                    .delay(4000)
                     //.ease('linear')
                     .style('stroke', function(d){
                         return 'black';
@@ -947,6 +1078,12 @@
                         return d.color;
                     });
 
+                    var linkgroup = d3.select("svg #link-group");
+                    linkgroup.selectAll("path")
+                    .transition()
+                    .duration(500)
+                    .delay(4000)
+                    .remove();
             }
         }
 
