@@ -68,20 +68,16 @@
 
                     console.log(arestas);
 
-                    //define o vetor de vertices utilizados na arvore
+                    //define o vetor de vertices e suas arvores
                     var vert = G.getNodes();
                     var vertices = new Array(2);
-                    vertices[0] = new Array(vert.length);
-                    vertices[1] = new Array(vert.length);
+                    vertices[0] = new Array(vert.length);//array aonde vão estar os vertices
+                    vertices[1] = new Array(vert.length);//array aonde vão estar as arvores
                     for(var i = 0; i < vert.length; i++){
                       vertices[0][i] = vert[i];
                       vertices[1][i] = i;
                     }
 
-                    console.log(vertices[0]);
-
-                    //é colocado a origem da primeira aresta no vetor de vestices utilizados
-                    // vertices.push(arestas[0].source);
 
                     //loop para verificar todas as arestas
                     for(var i = 0; i<qtd ; i++){
@@ -90,17 +86,19 @@
                       // resultado.push({passo: 1});
                       resultado.push({ operacao: 'visit_link_nd', passo: 1, fila: fila, item: aresta});
                       console.log("verificando indice de " + aresta.source.label);
-                      var partida = vertices[0].indexOf(aresta.source);
+                      var partida = vertices[0].indexOf(aresta.source);//verifica o indice do vartice de origem no vetor de vertices
                       console.log("indice no vetor de vertices: " + partida);
                       console.log(vertices[0][partida]);
 
                       console.log("verificando indice de " + aresta.target.label);
-                      var chegada = vertices[0].indexOf(aresta.target);
+                      var chegada = vertices[0].indexOf(aresta.target);//verifica o indice do vartice de destino no vetor de vertices
                       console.log("indice no vetor de vertices: " + chegada);
                       console.log(vertices[0][chegada]);
 
+                      //verifica se as arvores dos vertices são diferentes
                       if(vertices[1][partida] !== vertices[1][chegada]){
                         console.log(vertices[1][partida] +"!==" + vertices[1][chegada]);
+                        //altera a arvore do vertice destino da aresta para a arvore do vertice de origem
                         vertices = alteraArvore(vertices,vertices[1][partida],vertices[1][chegada]);
                         resultadoFinal.push(aresta.source);
                         resultadoFinal.push(aresta.target);
@@ -112,29 +110,7 @@
                         resultado.push({passo: 2});
                       }
                     }
-                      //se a origem da aresta não consta no vetor de vertices da arvore
-                    //   if(vertices.indexOf(aresta.source)===-1){
-                    //     resultado.push({passo: 3});
-                    //     console.log(aresta.source.label + " não encontrado no vetor");
-                    //     vertices.push(aresta.source);
-                    //     resultadoFinal.push(aresta.source);
-                    //     resultadoFinal.push(aresta.target);
-                    //     resultadoFinal.push(aresta);
-                    //     //marca a aresta
-                    //     resultado.push({ operacao: 'select_link_nd', passo: 0, fila: fila, item: aresta, resultado:resultadoFinal });
-                    //   }else if(vertices.indexOf(aresta.target)===-1){//ou se o destino da aresta não consta no vetor de vertices da arvore
-                    //     resultado.push({passo: 3});
-                    //     console.log(aresta.target.label + " não encontrado no vetor");
-                    //     vertices.push(aresta.target);
-                    //     resultadoFinal.push(aresta.source);
-                    //     resultadoFinal.push(aresta.target);
-                    //     resultadoFinal.push(aresta);
-                    //     //marca a aresta
-                    //     resultado.push({ operacao: 'select_link_nd', passo: 0, fila: fila, item: aresta, resultado:resultadoFinal });
-                    //   }else{
-                    //     resultado.push({passo: 2});
-                    //   }
-                    // }
+
                     resultado.push({passo: 4});
                   }//fim do else
 
@@ -158,6 +134,7 @@
             return service;
         });
 
+        //função para alteração das arvores
         function alteraArvore (lista,de,para){
           for (var i = 0; i < lista[1].length; i++) {
             if(lista[1][i] === para){

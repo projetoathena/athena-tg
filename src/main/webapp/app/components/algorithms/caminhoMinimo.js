@@ -200,38 +200,6 @@
                 }
                 console.log(G.getEdges());
 
-                // for(var count = 1; count < resultadoFinal.length; count++){
-                //   resultado.push({ operacao: 'deselect_link', passo: 10, fila: fila, item: texte, resultado:resultadoFinal });
-                // }
-
-                // verticeInicial.marcado = true;
-                // resultado.push({ operacao: 'visitar_no', passo: 0, fila: fila, item: verticeInicial, resultado:resultadoFinal.slice() });
-                // resultado.push({ operacao: 'marcar_no', passo: 1, fila: fila, item: verticeInicial, resultado:resultadoFinal.slice() });
-                //
-                // // Adiciona à fila
-                // fila.push(verticeInicial);
-                // resultado.push({ operacao: '', passo: 2, fila: fila.slice(), resultado:resultadoFinal.slice() });
-
-                // while (fila.length > 0) {
-                //     resultado.push({ operacao: '', passo: 3, fila: fila.slice(), resultado:resultadoFinal.slice() });
-                //     //Pega primeiro item da fila
-                //     var n = fila.shift();
-                //     resultadoFinal.push(n);
-                //     resultado.push({ operacao: '', passo: 4, fila: fila.slice(), resultado:resultadoFinal.slice()  });
-                //
-                //
-                //     G.getAdjacencyList(n).forEach(function(m){
-                //         resultado.push({ operacao: '', passo: 5, fila: fila.slice(),resultado: resultadoFinal.slice() });
-                //         if (!m.marcado) {
-                //             m.marcado = true;
-                //             resultado.push({ operacao: 'visitar_no', passo: 6, fila:fila.slice(), item:m, resultado:resultadoFinal.slice() });
-                //             fila.push(m);
-                //             resultado.push({ operacao: '', passo: 7, fila:fila.slice(), resultado:resultadoFinal.slice() });
-                //             resultado.push({ operacao: 'marcar_no', passo: 8, fila:fila.slice(), item:m,resultado:resultadoFinal.slice() });
-                //         }
-                //     });
-                // }
-
 
                 G.getNodes().forEach(function(vertice){
                     if(angular.isDefined(vertice.marcado)) {
