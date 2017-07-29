@@ -47,6 +47,33 @@
     </md-list-item >
     <md-divider ng-if="algoritmoSelecionado.usaFila"></md-divider>
 
+    <md-subheader class="md-no-sticky" ng-if="algoritmoSelecionado.usaLista">Verificados</md-subheader>
+    <md-list-item ng-if="algoritmoSelecionado.usaLista">
+        <div class="md-list-item-text" flex layout="row">[
+            <span ng-repeat="valor in fila track by $index">
+                {{valor}}
+                <i ng-if="!$last">,</i>
+            </span>
+            ]
+
+        </div>
+    </md-list-item >
+    <md-divider ng-if="algoritmoSelecionado.usaLista"></md-divider>
+
+    <md-subheader class="md-no-sticky" ng-if="algoritmoSelecionado.usaTabela">Tabela</md-subheader>
+    <md-list-item ng-if="algoritmoSelecionado.usaTabela">
+        <div class="md-list-item-text" flex layout="row">[
+            <span ng-repeat="valor in fila track by $index">
+                {{valor}}
+                <i ng-if="!$last">,</i>
+            </span>
+            ]
+
+        </div>
+    </md-list-item >
+    <md-divider ng-if="algoritmoSelecionado.usaTabela"></md-divider>
+
+
     <md-subheader class="md-no-sticky" ng-if="algoritmoSelecionado.usaCores">Solução</md-subheader>
     <md-list-item ng-if="algoritmoSelecionado.usaCores">
         <div class="md-list-item-text" flex layout="column">
@@ -82,8 +109,3 @@
     <md-divider ></md-divider>
     </div>
 </md-list>
-
-
-
-
-

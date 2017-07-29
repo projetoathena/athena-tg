@@ -1,0 +1,36 @@
+<md-dialog aria-label="Node selection">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Seleção de vértice</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancelDialog()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-padding">
+
+            <p>Escolha um vértice para finalizar o algoritmo:</p>
+
+
+            <md-select ng-model="selectedFinalNodeToRun">
+                <md-option ng-repeat="node in graph.getNodes()" ng-value="node">{{node.label}}</md-option>
+            </md-select>
+
+        </md-dialog-content>
+        <div class="md-actions md-padding" layout="row">
+
+            <md-button ng-click="cancelDialog()" md-autofocus>
+                Cancel
+            </md-button>
+
+            <span flex></span>
+
+            <md-button class="md-raised" ng-click="answerDialog(selectedOption)">
+                Executar algoritmo
+            </md-button>
+
+        </div>
+    </form>
+</md-dialog>

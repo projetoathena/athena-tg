@@ -33,6 +33,7 @@
                 removeNode: removeNode,
 
                 addEdge: addEdge,
+                addReverseEdge: addReverseEdge,
                 removeEdge: removeEdge,
 
                 getNodes: getNodes,
@@ -40,6 +41,7 @@
 
                 getEdge: getEdge,
                 getEdges: getEdges,
+                removeLinkId:removeLinkId,
 
                 getAdjacencyList: getAdjacencyList,
                 getAdjacencyMatrix: getAdjacencyMatrix,
@@ -53,8 +55,6 @@
                 getSucessores: getSucessores,
                 getAntecessores: getAntecessores,
                 getConexidade: getConexidade
-
-
             };
 
             function getConexidade(){
@@ -150,7 +150,7 @@
                 });
 
 
-                
+
 
             }
 
@@ -360,6 +360,16 @@
                 updateAdjacencyMatrix();
             }
 
+            function addReverseEdge(v, w, p) {
+              links.push({
+                  source: w,
+                  target: v,
+                  id: id++,
+                  peso: p,
+              });
+              return id-1;
+            }
+
             function addEdge(v, w) {
 
                 if(typeof v === 'number'){ v = getNode(v); }
@@ -500,6 +510,25 @@
                 // remove from link list
                 var foundLink = links.filter(function (element) {
                     return element.source.id === source.id && element.target.id === target.id;
+                });
+
+
+                foundLink.map(function(link){
+                    var indice = links.indexOf(link);
+                    //console.log('foundLink');
+                    //console.log(indice);
+
+                    if(indice > -1){
+
+                        links.splice(indice,1);
+                    }
+                });
+            }
+
+            function removeLinkId(id) {
+                // remove from link list
+                var foundLink = links.filter(function (element) {
+                    return element.id === id;
                 });
 
 
